@@ -1,0 +1,96 @@
+1) Generate your API
+1a) Type 
+
+  rails new listsapi --database=postgresql --api 
+
+in to your console.
+
+2) Edit your Gemfile to work with x64 machines (Bundler is broken), activate CORS then update rails.
+2a) Go to your Gemfile
+2b) Change
+
+  gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+
+to
+
+  gem "tzinfo-data"
+
+2c) Change
+
+  gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+
+to
+
+  gem "tzinfo-data"
+
+2d) Change
+
+  #gem "rack-cors"
+
+to
+
+  gem "rack-cors"
+
+3) Configure your database.yml. 
+3a) Go to database.yml
+3b) Add underneath the development and test portions
+
+  user: postgres
+  password: Asdfjkl;123
+
+3c) Change
+
+  production:
+  <<: *default
+  database: listsapi_production
+  username: listsapi
+  password: <%= ENV["LISTSAPI_DATABASE_PASSWORD"] %>
+
+to 
+
+  production:
+  <<: *default
+  url: <%= ENV["MY_APP_DATABASE_URL"] %>
+
+4) Create your database
+4a) Open pgAdmin4
+4b) Type in your user/password
+4c) Right click on database and create your databases with the approriate names
+
+5) Create your models, controllers, and routes (no views).
+5a) Type 
+
+  rails g scaffold user username:string password:string --skip-template-engine
+
+in to your console.
+
+5b) Type 
+
+  rails g scaffold todo description:string --skip-template-engine
+
+in to your console.
+
+5c) Type 
+
+  rails g scaffold task description:string completed:boolean --skip-template-engine
+
+in to your console.
+5d) Type 
+
+  rails db:migrate 
+
+in to your console.
+
+6) Create your seed.
+6a) Go to seeds.rb
+6b) Type
+
+  Task.destroy_all
+  Todo.destroy_all
+  User.destroy_all
+
+  User.create(username:'test_name', password:'test_password')
+  Todo.create(description:'test_description')
+  Task.create(description:'test_description', completed:False)
+
+6c) Run rails db:seed in your console
