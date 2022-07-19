@@ -1,0 +1,8 @@
+1) Generate your react project
+1a) Type 
+
+  npx create-react-app lists
+
+in to your console.
+
+2) Generate your react
