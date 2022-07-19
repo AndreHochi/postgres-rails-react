@@ -5,4 +5,11 @@
 
 in to your console.
 
-2) Generate your react
+2) Delete unnessessary files
+
+delete APPS.css, logo.svg, setupTests.js
+
+3) Delete unnessessary lines from app.js
+
+Delete line 1-3 and lines 7-20
+
